@@ -1,0 +1,25 @@
+description = "Main Layout"
+==
+<html>
+<head>
+    {% partial "html_base/meta_head" %}
+</head>
+<body>
+    <div id="wrapper">
+        {% partial "home_page/navigation" %}
+        <div id="main">
+            {% page %}
+            {% partial "home_page/section_one" %}
+            {% partial "home_page/section_two" %}
+            {% partial "home_page/section_three" %}
+            {% partial "home_page/section_four" %}
+            {% partial "home_page/section_five" %}
+            {% partial "home_page/section_six" %}
+            {% partial "home_page/section_seven" %}
+            {% partial "home_page/section_eight" %}                                      
+        </div>
+        {% partial "all_pages/footer" %}  
+    </div>
+    {% partial "html_base/scripts" %}
+</body>
+</html>

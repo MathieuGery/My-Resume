@@ -1,0 +1,30 @@
+version: '2.2'
+services:
+  october:
+    image: aspendigital/octobercms:latest
+    environment:
+      - APP_URL="https://october.gery.me"
+      - CMS_LINK_POLICY=force
+      - CMS_BACKEND_URI=backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.site-october-http.entrypoints=http"
+      - "traefik.http.routers.site-october-http.rule=Host(`october.gery.me`)"
+      - "traefik.http.routers.site-october-http.middlewares=site-october-https@docker"
+      - "traefik.http.middlewares.site-october-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.site-october.rule=Host(`october.gery.me`)"
+      - "traefik.http.routers.site-october.entrypoints=https"
+      - "traefik.http.routers.site-october.tls.certresolver=gery"
+      - "traefik.http.services.site-october.loadbalancer.server.port=80"
+    volumes:
+      - october-volume:/var/www/html
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+
+volumes:
+  october-volume:
+

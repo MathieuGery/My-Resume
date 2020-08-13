@@ -1,0 +1,14 @@
+version: '2.2'
+services:
+  october:
+    image: aspendigital/octobercms:latest
+    ports:
+      - 8080:80
+    environment:
+      - APP_URL="localhost"
+      - CMS_BACKEND_URI=backend
+    volumes:
+      - october-volume:/var/www/html
+
+volumes:
+  october-volume:
